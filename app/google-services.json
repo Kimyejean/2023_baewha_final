@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1047309934743",
+    "project_id": "refrigerator-final",
+    "storage_bucket": "refrigerator-final.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047309934743:android:63e349e95b05724fe709d2",
+        "android_client_info": {
+          "package_name": "com.example.refrigerator_2023final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwogjVF8CODzaWBWoCDWNM38EkmTKeDiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

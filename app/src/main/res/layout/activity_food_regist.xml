@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <ImageView
+        android:id="@+id/food_image_view"
+        android:layout_width="186dp"
+        android:layout_height="176dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="94dp"
+        android:layout_marginEnd="103dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <!--<TextView
+        android:id="@+id/nicknameView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="202dp"
+        android:layout_toStartOf="@+id/textView4"
+        android:fontFamily="sans-serif"
+        android:text="나만의"
+        android:textColor="#807F7F"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />-->
+
+    <TextView
+        android:id="@+id/top_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/food_image_view"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="202dp"
+        android:fontFamily="sans-serif"
+        android:text="나만의 냉장고"
+        android:textAlignment="center"
+        android:textColor="#8BC34A"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/food_image_view"
+        android:layout_marginTop="94dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/food_name"
+            android:layout_width="259dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="이름"
+            android:inputType="text"
+            android:textSize="25dp" />
+
+        <EditText
+            android:id="@+id/buy_date"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="구매한 날짜 입력"
+            android:inputType="date"
+            android:textSize="25dp" />
+
+        <EditText
+            android:id="@+id/use_date"
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="소비기한 입력"
+            android:inputType="date"
+            android:textSize="25dp" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/registButton"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="83dp"
+        android:backgroundTint="#a8f279"
+        android:text="완료"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/Gotolistbtn"
+        android:layout_width="311dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#a8f279"
+        android:text="리스트로 가기"
+        android:onClick="GoToFoodList"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/image_upload_btn"
+        android:layout_width="189dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/food_image_view"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="106dp"
+        android:backgroundTint="#a8f279"
+        android:text="사진 업로드"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
+
+</RelativeLayout>
