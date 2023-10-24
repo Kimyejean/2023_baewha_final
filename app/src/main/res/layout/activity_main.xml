@@ -62,9 +62,9 @@
         app:layout_constraintHorizontal_bias="0.011"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095">
+        app:layout_constraintVertical_bias="0.095" />
 
-    </SearchView>
+
 
     <EditText
         android:id="@+id/m_serarch"
@@ -73,7 +73,7 @@
         android:layout_weight="1"
         android:ems="10"
         android:inputType="text"
-        android:text="오늘 먹고싶은 음식을 검색해주세요"
+        android:hint="오늘 먹고싶은 음식을 검색해주세요"
         android:textColor="#B1B0B0"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -604,7 +604,19 @@
         android:onClick="GoToFoodList"
         android:text="냉장고리스트 테스트 버튼"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/sub_color"/>
+
+    <Button
+        android:id="@+id/my_page_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="212dp"
+        android:onClick="GoToMyPage"
+        android:text="마이페이지 테스트 버튼"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/sub_color"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
