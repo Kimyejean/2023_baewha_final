@@ -161,7 +161,6 @@ public class MyPageJava extends AppCompatActivity {
         }
     }
 
-
     private void loadProfileImage() {
         StorageReference profileImageRef = storageReference.child("profiles/" + userId + ".jpg");
 
@@ -217,4 +216,7 @@ public class MyPageJava extends AppCompatActivity {
             }
         });
     }
+
+
+
 }
