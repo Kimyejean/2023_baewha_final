@@ -42,5 +42,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FoodListPage.class);
         startActivity(intent);
     }
+
+    public void GoToMyPage(View view){
+        Intent intent = new Intent(this, MyPageJava.class);
+        startActivity(intent);
+    }
 }
 

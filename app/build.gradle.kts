@@ -43,7 +43,8 @@ dependencies {
     implementation ("com.google.firebase:firebase-storage:20.3.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation ("com.squareup.picasso:picasso:2.8")
-
+    implementation ("com.google.firebase:firebase-database:20.0.0")
+    implementation ("com.google.firebase:firebase-storage:20.0.0")
 
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
