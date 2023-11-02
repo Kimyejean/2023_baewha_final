@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -59,6 +61,10 @@ public class FoodRegist extends AppCompatActivity {
         foodNameEditText = findViewById(R.id.food_name);
         useDateEditText = findViewById(R.id.use_date);
         buyDateEditText = findViewById(R.id.buy_date);
+
+        // 사용자가 날짜를 입력하면 자동으로 포맷팅하는 코드 추가
+        useDateEditText.addTextChangedListener(useDateTextWatcher);
+        buyDateEditText.addTextChangedListener(buyDateTextWatcher);
 
         selectImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +161,50 @@ public class FoodRegist extends AppCompatActivity {
             Toast.makeText(this, "모든 필드를 입력하세요.", Toast.LENGTH_SHORT).show();
         }
     }
+
+    TextWatcher useDateTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // 필요한 경우 구현
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // 필요한 경우 구현
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (s.length() == 8) {
+                // 입력된 길이가 8인 경우 (예: 20231102)
+                String inputDate = s.toString();
+                String formattedDate = inputDate.substring(0, 4) + "-" + inputDate.substring(4, 6) + "-" + inputDate.substring(6, 8);
+                useDateEditText.setText(formattedDate);
+            }
+        }
+    };
+
+    TextWatcher buyDateTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // 필요한 경우 구현
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // 필요한 경우 구현
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (s.length() == 8) {
+                // 입력된 길이가 8인 경우 (예: 20231102)
+                String inputDate = s.toString();
+                String formattedDate = inputDate.substring(0, 4) + "-" + inputDate.substring(4, 6) + "-" + inputDate.substring(6, 8);
+                buyDateEditText.setText(formattedDate);
+            }
+        }
+    };
 
     public void GoToFoodList(View view) {
         Intent intent = new Intent(this, FoodListPage.class);

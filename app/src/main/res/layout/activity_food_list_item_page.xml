@@ -34,4 +34,8 @@
         android:layout_below="@id/firstDateTextView"
         android:layout_toEndOf="@id/foodImageView"
         android:layout_marginStart="8dp" />
+
+    <!--
+         tnwjdtnjwd
+    -->
 </RelativeLayout>
