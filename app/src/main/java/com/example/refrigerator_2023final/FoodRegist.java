@@ -30,7 +30,9 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 public class FoodRegist extends AppCompatActivity {
     private Button selectImageBtn, saveBtn;
     private ImageView foodImageView;
@@ -160,4 +162,27 @@ public class FoodRegist extends AppCompatActivity {
         Intent intent = new Intent(this, FoodListPage.class);
         startActivity(intent);
     }
+
+    TextWatcher dateTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // 필요한 경우 구현
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // 필요한 경우 구현
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (s.length() == 8) {
+                // 입력된 길이가 8인 경우 (예: 20231102)
+                String inputDate = s.toString();
+                String formattedDate = inputDate.substring(0, 4) + "-" + inputDate.substring(4, 6) + "-" + inputDate.substring(6, 8);
+                buyDateEditText.setText(formattedDate);
+                useDateEditText.setText(formattedDate);
+            }
+        }
+    };
 }
