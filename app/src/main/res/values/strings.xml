@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">나만의 냉장고</string>
+    <string name="msg_token_fmt">Your message with %s</string>
 </resources>
