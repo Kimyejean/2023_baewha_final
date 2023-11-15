@@ -216,7 +216,10 @@ public class MyPageJava extends AppCompatActivity {
             }
         });
     }
-
+    public void GoToRecipeRegistPage(View view){
+        Intent intent = new Intent(this, RecipeRegistActivity.class);
+        startActivity(intent);
+    }
 
 
 }
