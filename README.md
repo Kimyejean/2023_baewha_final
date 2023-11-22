@@ -7,4 +7,5 @@
 (반응형 앱이 아니기 때문에 레이아웃이 어긋나 보일 수 있습니다.)
 
 [release.zip](https://github.com/Kimyejean/2023_baewha_final/files/13443180/release.zip)
-[my_refrigerator.zip](https://github.com/Kimyejean/2023_baewha_final/files/13445082/my_refrigerator.zip)
+
+[my_refrigerator.zip](https://github.com/Kimyejean/2023_baewha_final/files/13445087/my_refrigerator.zip)
