@@ -1,64 +1,54 @@
 package com.example.refrigerator_2023final;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.EditText;
-
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainViewAdapter.OnItemClickListener {
     private TextView userEmailTextView;
-    private EditText searchEditText;
+    private EditText editTextSearch;
+    private ImageButton btnSearch;
 
-    private RecyclerView mMainView;
-    private ArrayList<MainViewItem> mList;
-    private MainViewAdapter mMainViewAdapter;
+    private RecyclerView mMainView1;
+    private RecyclerView mMainView2;
+    private RecyclerView mMainView3;
+
+    private List<MainViewItem> mList1;
+    private List<MainViewItem> mList2;
+    private List<MainViewItem> mList3;
+
+    private MainViewAdapter mMainViewAdapter1;
+    private MainViewAdapter mMainViewAdapter2;
+    private MainViewAdapter mMainViewAdapter3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        userEmailTextView = findViewById(R.id.emailView); // TextView ID로 변경
-        searchEditText = findViewById(R.id.m_serarch);
+        userEmailTextView = findViewById(R.id.emailView);
+
         // Firebase Authentication에서 현재 사용자 가져오기
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ푸시알림ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ푸시알림ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-        /*FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                            return;
-                        }
-
-                        // Get new FCM registration token
-                        String token = task.getResult();
-
-                        // Log and toast
-                        String msg = getString(R.string.msg_token_fmt, token);
-                        Log.d(TAG, msg);
-                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();
-                    }
-        });
-*/
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ푸시알림ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ푸시알림ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
         if (user != null) {
             // 사용자가 로그인한 경우 사용자 이메일 가져오기
             String userEmail = user.getEmail();
@@ -69,93 +59,143 @@ public class MainActivity extends AppCompatActivity {
             // "@" 이전의 이메일 주소 부분을 가져오기
             if (parts.length > 0) {
                 String username = parts[0];
-                userEmailTextView.setText(username+" 님");
+                userEmailTextView.setText(username + " 님");
             }
         }
 
+        //editTextSearch = findViewById(R.id.editTextSearch);
+        btnSearch = findViewById(R.id.btnSearch);
 
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText editTextSearch = findViewById(R.id.editTextSearch);
+                String searchText = editTextSearch.getText().toString();
 
+                Intent intent = new Intent(MainActivity.this, SearchPageActivity.class);
+                intent.putExtra("searchText", searchText);
+                startActivity(intent);
+            }
+        });
 
-        mMainView = findViewById(R.id.recyclerView);
-        mList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            addItem(mList, "", "", "", "");
+        mMainView1 = findViewById(R.id.recyclerView);
+        mList1 = new ArrayList<>();
+        loadRandomRecipesFromFirestore(mList1, 5);
+        mMainViewAdapter1 = new MainViewAdapter(mList1, mList1, mList2, mList3, this); // Set the click listener
+        mMainView1.setAdapter(mMainViewAdapter1);
+        mMainView1.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+
+        // Second RecyclerView
+        mMainView2 = findViewById(R.id.recyclerView2);
+        mList2 = new ArrayList<>();
+        loadRandomRecipesFromFirestore(mList2, 5);
+        mMainViewAdapter2 = new MainViewAdapter(mList2, mList1, mList2, mList3, this);// Set the click listener
+        mMainView2.setAdapter(mMainViewAdapter2);
+        mMainView2.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+
+        // Third RecyclerView
+        mMainView3 = findViewById(R.id.recyclerView3);
+        mList3 = new ArrayList<>();
+        loadRandomRecipesFromFirestore(mList3, 5);
+        mMainViewAdapter3 = new MainViewAdapter(mList3, mList1, mList2, mList3, this); // Set the click listener
+        mMainView3.setAdapter(mMainViewAdapter3);
+        mMainView3.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+
+    }
+
+    // Implement the onItemClick method from the OnItemClickListener interface
+
+    @Override
+    public void onItemClick(int position, int listIndex) {
+        List<MainViewItem> clickedList;
+
+        if (listIndex == 1) {
+            clickedList = mList1;
+        } else if (listIndex == 2) {
+            clickedList = mList2;
+        } else if (listIndex == 3) {
+            clickedList = mList3;
+        } else {
+            return; // Invalid list index
         }
-        mMainViewAdapter = new MainViewAdapter(mList);
-        mMainView.setAdapter(mMainViewAdapter);
-        mMainView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        MainViewItem clickedItem = clickedList.get(position);
+        Log.d("MainActivity", "List size: " + clickedList.size());
+        Log.d("MainActivity", "Clicked Item: " + clickedItem.toString());
+        String recipeId = clickedItem.getId();
+        Log.d("MainActivity", "Clicked Recipe ID: " + recipeId);
+        Intent intent = new Intent(MainActivity.this, RecipeDetailActivity.class);
+        intent.putExtra("recipeId", recipeId);
+        startActivity(intent);
+    }
 
-        // 두 번째 RecyclerView 초기화
-        mMainView = findViewById(R.id.recyclerView2);
-        mList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            addItem(mList, "", "", "", "");
-        }
-        mMainViewAdapter = new MainViewAdapter(mList);
-        mMainView.setAdapter(mMainViewAdapter);
-        mMainView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
 
-        // 세 번째 RecyclerView 초기화
-        mMainView = findViewById(R.id.recyclerView3);
-        mList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            addItem(mList, "", "", "", "");
-        }
-        mMainViewAdapter = new MainViewAdapter(mList);
-        mMainView.setAdapter(mMainViewAdapter);
-        mMainView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+    private void loadRandomRecipesFromFirestore(List<MainViewItem> list, int numberOfRecipes) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("recipes")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<DocumentSnapshot> documents = queryDocumentSnapshots.getDocuments();
+
+                    int totalRecipes = documents.size();
+                    int recipesToLoad = Math.min(numberOfRecipes, totalRecipes);
+
+                    // Shuffle the list of documents to get random recipes
+                    Collections.shuffle(documents);
+
+                    for (int i = 0; i < recipesToLoad; i++) {
+                        DocumentSnapshot document = documents.get(i);
+                        String documentId = document.getId(); // Get the document ID
+
+                        String imgUrl = document.getString("imageUrl");
+                        String recipeTitle = document.getString("recipeTitle");
+                        String shortDescription = document.getString("shortDescription");
+
+                        addItem(list, imgUrl, documentId, recipeTitle, shortDescription);
+                    }
+
+                    // Notify the adapter that the data has changed
+                    if (list == mList1) {
+                        mMainViewAdapter1.notifyDataSetChanged();
+                    } else if (list == mList2) {
+                        mMainViewAdapter2.notifyDataSetChanged();
+                    } else if (list == mList3) {
+                        mMainViewAdapter3.notifyDataSetChanged();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    // Handle the error
+                });
     }
 
 
 
-    // (3) 추가
-    public void addItem(ArrayList<MainViewItem> list, String imgView_item, String Recipe_Title, String ShortRecipe, String Recipe_Score) {
+    public void addItem(List<MainViewItem> list, String imgUrl, String id, String recipeTitle, String shortDescription) {
         MainViewItem item = new MainViewItem();
-        item.setImgName(imgView_item);
-        item.setMainText(Recipe_Title);
-        item.setSubText(ShortRecipe);
-        item.setSubText2(Recipe_Score);
+        item.setId(id);
+        item.setimgUrl(imgUrl);
+        item.setMainText(recipeTitle);
+        item.setSubText(shortDescription);
         list.add(item);
     }
 
+    public void GotoHome(View view){
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void GoToFoodList(View view){
-        Intent intent = new Intent(this, FoodListPage.class);
+        Intent intent = new Intent(MainActivity.this, FoodListPage.class);
         startActivity(intent);
     }
 
     public void GoToMyPage(View view){
-        Intent intent = new Intent(this, MyPageJava.class);
+        Intent intent = new Intent(MainActivity.this, MyPageJava.class);
         startActivity(intent);
     }
 
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ푸시알림ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ푸시알림ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    /*private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-        if (isGranted) {
-            // FCM SDK (and your app) can post notifications.
-        } else {
-            // TODO: Inform user that that your app will not show notifications.
-        }
-    });
-
-    private void askNotificationPermission() {
-        // This is only necessary for API level >= 33 (TIRAMISU)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-                // FCM SDK (and your app) can post notifications.
-            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-                // TODO: display an educational UI explaining to the user the features that will be enabled
-                //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
-                //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
-                //       If the user selects "No thanks," allow the user to continue without notifications.
-            } else {
-                // Directly ask for the permission
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-            }
-        }
-    }*/
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ푸시알림ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ푸시알림ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
+    public void GoToSearchPage(View view){
+        Intent intent = new Intent(MainActivity.this, SearchPageActivity.class);
+        startActivity(intent);
+    }
 }
-

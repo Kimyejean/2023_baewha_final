@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Existing code -->
+
+    <string-array name="search_options">
+        <item>제목</item>
+        <item>재료</item>
+    </string-array>
+</resources>

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class FoodListPage extends AppCompatActivity {
     private ListView foodListView;
     private FirebaseAuth auth;
@@ -29,8 +33,6 @@ public class FoodListPage extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list_page);
 
@@ -71,6 +73,8 @@ public class FoodListPage extends AppCompatActivity {
                 displayFoodList();
             }
         });
+
+
     }
 
 
@@ -111,17 +115,29 @@ public class FoodListPage extends AppCompatActivity {
     }
 
 
-
     public void GoToFoodRegist(View view){
         Intent intent = new Intent(this, FoodRegist.class);
         startActivity(intent);
     }
 
-    public void refreshFoodList(View view) {
-
-        // 냉장고 목록을 다시 불러옴
-        displayFoodList();
+    public void GotoHome(View view)
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
-
+    public void GotoMypage(View view)
+    {
+        Intent intent = new Intent(this, MyPageJava.class);
+        startActivity(intent);
+    }
+    public void GotoSearch(View view)
+    {
+        Intent intent = new Intent(this, SearchPageActivity.class);
+        startActivity(intent);
+    }
+    public void GotoFoodList(View view)
+    {
+        Intent intent = new Intent(this, FoodListPage.class);
+        startActivity(intent);
+    }
 }
-

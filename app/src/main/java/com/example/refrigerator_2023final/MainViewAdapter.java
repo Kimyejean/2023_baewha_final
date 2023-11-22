@@ -10,31 +10,40 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MainViewAdapter extends RecyclerView.Adapter<MainViewAdapter.ViewHolder> {
 
-    private ArrayList<MainViewItem> recipeList;
+    private List<MainViewItem> recipeList;
+    private OnItemClickListener mListener;
+    private List<MainViewItem> mList1;
+    private List<MainViewItem> mList2;
+    private List<MainViewItem> mList3;
 
-    public MainViewAdapter(ArrayList<MainViewItem> recipeList) {
+    public interface OnItemClickListener {
+        void onItemClick(int position, int listIndex);
+    }
+    public MainViewAdapter(List<MainViewItem> recipeList, List<MainViewItem> list1, List<MainViewItem> list2, List<MainViewItem> list3, OnItemClickListener listener) {
         this.recipeList = recipeList;
+        this.mList1 = list1;
+        this.mList2 = list2;
+        this.mList3 = list3;
+        this.mListener = listener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgView_item;
-        TextView recipeTitle;
-        // TextView recipeScore;
-        TextView recipeShort;
+        TextView Recipe_Title;
+        TextView ShortRecipe;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imgView_item = (ImageView) itemView.findViewById(R.id.imgView_item);
-            recipeTitle = (TextView) itemView.findViewById(R.id.Recipe_Title);
-            // recipeScore = (TextView) itemView.findViewById(R.id.Recipe_Score);
-            recipeShort = (TextView) itemView.findViewById(R.id.ShortRecipe);
+            imgView_item = itemView.findViewById(R.id.imgView_item);
+            Recipe_Title = itemView.findViewById(R.id.Recipe_Title);
+            ShortRecipe = itemView.findViewById(R.id.ShortRecipe);
         }
     }
 
@@ -42,26 +51,47 @@ public class MainViewAdapter extends RecyclerView.Adapter<MainViewAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = LayoutInflater.from(context);
 
         View view = inflater.inflate(R.layout.activity_main_list_page, parent, false);
-        MainViewAdapter.ViewHolder vh = new MainViewAdapter.ViewHolder(view);
-        return vh;
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MainViewItem recipe = recipeList.get(position);
 
-        // Load image using Glide
-        Glide.with(holder.itemView.getContext())
-                .load(recipe.getImgName())
+        // Load image using Picasso
+        Picasso.get()
+                .load(recipe.getimgUrl())
+                .fit()
+                .centerCrop()
                 .into(holder.imgView_item);
 
         // Set other details
-        holder.recipeTitle.setText(recipe.getMainText());
-        // holder.recipeScore.setText(String.valueOf(recipe.getRecipeScore()));
-        holder.recipeShort.setText(recipe.getSubText());
+        holder.Recipe_Title.setText(recipe.getMainText());
+        holder.ShortRecipe.setText(recipe.getSubText());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    // Use holder.getAdapterPosition() to get the correct adapter position
+                    int listIndex;
+                    if (recipeList == mList1) {
+                        listIndex = 1;
+                    } else if (recipeList == mList2) {
+                        listIndex = 2;
+                    } else if (recipeList == mList3) {
+                        listIndex = 3;
+                    } else {
+                        listIndex = 0; // Handle other cases or provide a default value
+                    }
+                    mListener.onItemClick(holder.getAdapterPosition(), listIndex);
+                }
+            }
+        });
+
     }
 
     @Override

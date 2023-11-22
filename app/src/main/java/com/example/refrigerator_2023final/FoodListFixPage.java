@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.os.Bundle;
 import android.view.View;
@@ -98,6 +99,23 @@ public class FoodListFixPage extends AppCompatActivity {
                 deleteFoodInformation(); //Firebase 데이터베이스에서 특정 음식 정보를 삭제
             }
         });
+
+        ImageButton foodSearchButton = findViewById(R.id.btnSearch);
+        foodSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Get the text from fix_food_name
+                EditText fixFoodNameEditText = findViewById(R.id.fix_food_name);
+                String searchText = fixFoodNameEditText.getText().toString();
+
+                // Pass the text and the selection to the FoodSearchPage
+                Intent intent = new Intent(FoodListFixPage.this, SearchPageActivity.class);
+                intent.putExtra("searchText", searchText);
+                intent.putExtra("spinnerSelection", "재료"); // Change this to whatever text represents "재료" in your spinner
+                startActivity(intent);
+            }
+        });
+
     }
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

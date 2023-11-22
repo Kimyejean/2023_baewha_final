@@ -27,7 +27,10 @@ import android.content.DialogInterface;
 import android.widget.CheckBox;
 import androidx.appcompat.app.AlertDialog;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.widget.CompoundButton;
@@ -43,7 +46,7 @@ public class RecipeRegistActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri imageUri;
 
-    private Button btnAddImage, btnAllergyCheck, btnAddRecipe;
+    private Button btnAddImage, btnAllergyCheck, RecipeRegistBtn;
     private EditText editTextRecipeTitle;
     private EditText editTextShortDescription;
     private EditText editTextIngredients;
@@ -62,7 +65,9 @@ public class RecipeRegistActivity extends AppCompatActivity {
     private EditText editTextStep11;
     private EditText editTextStep12;
 
-    private Map<String, Object> recipeData = new HashMap<>();
+
+    Map<String, Object> recipeData = new HashMap<>();
+
 
     private boolean[] allergyStates = new boolean[10];
 
@@ -76,7 +81,7 @@ public class RecipeRegistActivity extends AppCompatActivity {
         btnAllergyCheck = findViewById(R.id.btnAllergyCheck);
         imageViewRecipe = findViewById(R.id.imageViewRecipe); //요리 대표 사진
         btnAddImage = findViewById(R.id.btnAddImage); //사진 등록 버튼
-        btnAddRecipe = findViewById(R.id.btnAddRecipe); //레시피 등록 버튼
+        RecipeRegistBtn = findViewById(R.id.btnAddRecipe); //레시피 등록 버튼
         editTextRecipeTitle = findViewById(R.id.editTextRecipeTitle); //레시피 제목
         editTextShortDescription = findViewById(R.id.editTextShortDescription); //레시피 한 줄 소개
         editTextIngredients = findViewById(R.id.editTextIngredients); //레시피 식재료
@@ -94,33 +99,11 @@ public class RecipeRegistActivity extends AppCompatActivity {
         editTextStep10 = findViewById(R.id.editTextStep10);
         editTextStep11 = findViewById(R.id.editTextStep11);
         editTextStep12 = findViewById(R.id.editTextStep12);
-        //토글버튼
-        ToggleButton toggleButton1 = findViewById(R.id.toggleButton1);
-        ToggleButton toggleButton2 = findViewById(R.id.toggleButton2);
-        ToggleButton toggleButton3 = findViewById(R.id.toggleButton3);
-        ToggleButton toggleButton4 = findViewById(R.id.toggleButton4);
-        ToggleButton toggleButton5 = findViewById(R.id.toggleButton5);
-        ToggleButton toggleButton6 = findViewById(R.id.toggleButton6);
-        ToggleButton toggleButton7 = findViewById(R.id.toggleButton7);
-        ToggleButton toggleButton8 = findViewById(R.id.toggleButton8);
+
+
 
         //사용자가 레시피를 등록할 때 입력한 정보를 읽어옴
-        String recipeTitle = editTextRecipeTitle.getText().toString();
-        String shortDescription = editTextShortDescription.getText().toString();
-        String ingredients = editTextIngredients.getText().toString();
-        String seasoning = editTextSeasoning.getText().toString();
-        String step1 = editTextStep1.getText().toString();
-        String step2 = editTextStep2.getText().toString();
-        String step3 = editTextStep3.getText().toString();
-        String step4 = editTextStep4.getText().toString();
-        String step5 = editTextStep5.getText().toString();
-        String step6 = editTextStep6.getText().toString();
-        String step7 = editTextStep7.getText().toString();
-        String step8 = editTextStep8.getText().toString();
-        String step9 = editTextStep9.getText().toString();
-        String step10 = editTextStep10.getText().toString();
-        String step11 = editTextStep11.getText().toString();
-        String step12 = editTextStep12.getText().toString();
+
 
         // Firebase 초기화
         firestore = FirebaseFirestore.getInstance();
@@ -133,14 +116,6 @@ public class RecipeRegistActivity extends AppCompatActivity {
             }
         });
 
-        //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ토글버튼 데이터 저장학;ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-        toggleButton1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // Handle the state change
-                // You can save the state to Firestore here
-            }
-        });
 
         //사진 등록 버튼 클릭 시 갤러리에서 이미지 선택
         btnAddImage.setOnClickListener(new View.OnClickListener() {
@@ -151,15 +126,28 @@ public class RecipeRegistActivity extends AppCompatActivity {
         });
 
         //레시피 등록 버튼 클릭 시 데이터 저장
-        btnAddRecipe.setOnClickListener(new View.OnClickListener() {
+        RecipeRegistBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveRecipeData();
-            }
-        });
 
-        // 레시피 데이터를 Map으로 저장
-        Map<String, Object> recipeData = new HashMap<>();
+            String recipeTitle = editTextRecipeTitle.getText().toString();
+            String shortDescription = editTextShortDescription.getText().toString();
+            String ingredients = editTextIngredients.getText().toString();
+            String seasoning = editTextSeasoning.getText().toString();
+            String step1 = editTextStep1.getText().toString();
+            String step2 = editTextStep2.getText().toString();
+            String step3 = editTextStep3.getText().toString();
+            String step4 = editTextStep4.getText().toString();
+            String step5 = editTextStep5.getText().toString();
+            String step6 = editTextStep6.getText().toString();
+            String step7 = editTextStep7.getText().toString();
+            String step8 = editTextStep8.getText().toString();
+            String step9 = editTextStep9.getText().toString();
+            String step10 = editTextStep10.getText().toString();
+            String step11 = editTextStep11.getText().toString();
+            String step12 = editTextStep12.getText().toString();
+                // 레시피 데이터를 Map으로 저장
+            Map<String, Object> recipeData = new HashMap<>();
         recipeData.put("recipeTitle", recipeTitle);
         recipeData.put("shortDescription", shortDescription);
         recipeData.put("ingredients", ingredients);
@@ -177,29 +165,47 @@ public class RecipeRegistActivity extends AppCompatActivity {
         recipeData.put("step11", step11);
         recipeData.put("step12", step12);
 
+        for (int i = 0; i < allergyStates.length; i++) {
+                String allergyKey = "allergy" + (i + 1);
+                recipeData.put(allergyKey, allergyStates[i]);
+            }
+            saveRecipeData();
+        }
+        });
+
+
+
+
         // 현재 사용자 가져오기
         FirebaseUser currentUser = auth.getCurrentUser();
-         if (currentUser != null) {
-             String uid = currentUser.getUid();
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
 
             // 파이어스토어에 저장
-            firestore.collection("users").document(uid).collection("recipes").add(recipeData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Toast.makeText(RecipeRegistActivity.this, "레시피가 성공적으로 등록되었습니다.", Toast.LENGTH_SHORT).show();   // 저장이 성공했을 때의 처리
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(RecipeRegistActivity.this, "레시피 등록에 실패했습니다.", Toast.LENGTH_SHORT).show();   // 저장이 실패했을 때의 처리
-                }
-            });
+            firestore.collection("users").document(uid).collection("recipes").add(recipeData)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            // 레시피가 성공적으로 등록되면 문서의 고유 식별자 가져오기
+                            String recipeId = documentReference.getId();
+                            showToast("레시피가 성공적으로 등록되었습니다. Recipe ID: " + recipeId);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            showToast("레시피 등록에 실패했습니다.");
+                        }
+                    });
         }
-
         loadAllergyStatesFromFirestore();
     }
 
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ알러지유발 식재료 정보 체크 다이얼로그ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    private void showToast(String message) {
+        Toast.makeText(RecipeRegistActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
     public void showAllergyDialog() {
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
 
@@ -263,15 +269,15 @@ public class RecipeRegistActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(RecipeRegistActivity.this, "알러지 정보가 성공적으로 저장되었습니다.", Toast.LENGTH_SHORT).show();
                         }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(RecipeRegistActivity.this, "알러지 정보 저장에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(RecipeRegistActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(RecipeRegistActivity.this, "알러지 정보 저장에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RecipeRegistActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
-                }
-            });
+                        }
+                    });
         }
     }
 
@@ -301,7 +307,7 @@ public class RecipeRegistActivity extends AppCompatActivity {
         // Add non-empty values to the recipeData map
         addValueToRecipeData("recipeTitle", editTextRecipeTitle.getText().toString());
         addValueToRecipeData("shortDescription", editTextShortDescription.getText().toString());
-        addValueToRecipeData("ingredients", editTextIngredients.getText().toString());
+        addIngredientsToRecipeData();
         addValueToRecipeData("seasoning", editTextSeasoning.getText().toString());
         addValueToRecipeData("step1", editTextStep1.getText().toString());
         addValueToRecipeData("step2", editTextStep2.getText().toString());
@@ -327,6 +333,16 @@ public class RecipeRegistActivity extends AppCompatActivity {
         }
     }
 
+    //입력한 재료를 각각 저장하여 유사 검색이 가능하도록 함
+    private void addIngredientsToRecipeData() {
+        String ingredientsString = editTextIngredients.getText().toString();
+        String[] ingredientsArray = ingredientsString.split("\\s*,\\s*");
+        List<String> ingredientsList = new ArrayList<>(Arrays.asList(ingredientsArray));
+
+        recipeData.put("ingredients", ingredientsList);
+    }
+
+
     private void addValueToRecipeData(String key, String value) {
         // Add key-value pair to recipeData only if the value is not empty
         if (!value.trim().isEmpty()) {
@@ -338,12 +354,15 @@ public class RecipeRegistActivity extends AppCompatActivity {
     private void uploadImageToFirebase() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
-            String uid = currentUser.getUid();
+            final String uid = currentUser.getUid();
+
+            // Generate a unique file name (you can use recipe ID or timestamp)
+            final String fileName = "recipe_image_" + System.currentTimeMillis() + ".jpg";
 
             StorageReference storageRef = FirebaseStorage.getInstance().getReference()
                     .child("recipe_images")
                     .child(uid)
-                    .child("recipe_image.jpg"); // You can change the file name as needed
+                    .child(fileName);
 
             storageRef.putFile(imageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -353,8 +372,8 @@ public class RecipeRegistActivity extends AppCompatActivity {
                             storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri downloadUrl) {
-                                    // Save the download URL to Firestore or perform other operations
-                                    saveImageUrlToFirestore(downloadUrl.toString());
+                                    // Save the download URL and user ID to Firestore
+                                    saveImageUrlToFirestore(downloadUrl.toString(), uid);
                                 }
                             });
                         }
@@ -369,15 +388,13 @@ public class RecipeRegistActivity extends AppCompatActivity {
         }
     }
 
-    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ선택한 이미지 fire store에 url로 저장ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    private void saveImageUrlToFirestore(String imageUrl) {
-        FirebaseUser currentUser = auth.getCurrentUser();
-        String uid = currentUser.getUid();
-
-        // Save the image URL and allergy states to Firestore along with other recipe data
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ선택한 이미지 firestore에 URL로 저장ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    private void saveImageUrlToFirestore(String imageUrl, String userId) {
+        // Save the image URL, user ID, and other recipe data to Firestore
         recipeData.put("imageUrl", imageUrl);
+        recipeData.put("userId", userId); // Add user ID to associate the recipe with the user
 
-        firestore.collection("users").document(uid).collection("recipes")
+        firestore.collection("recipes")
                 .add(recipeData)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -395,6 +412,7 @@ public class RecipeRegistActivity extends AppCompatActivity {
                 });
     }
 
+
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     private void loadAllergyStatesFromFirestore() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -411,7 +429,6 @@ public class RecipeRegistActivity extends AppCompatActivity {
                                 for (int i = 0; i < allergyCheckBoxes.length; i++) {
                                     String checkBoxKey = "allergy" + (i + 1);
                                     allergyStates[i] = documentSnapshot.getBoolean(checkBoxKey);
-                                    // Set the checkbox state based on the stored value, with a null check
                                     if (allergyCheckBoxes[i] != null) {
                                         allergyCheckBoxes[i].setChecked(allergyStates[i]);
                                     }
@@ -422,34 +439,7 @@ public class RecipeRegistActivity extends AppCompatActivity {
         }
     }
 
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ토글버튼 데이터 저장하기ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    private void saveToggleButtonStatesToFirestore(boolean[] toggleButtonStates) {
-        FirebaseUser currentUser = auth.getCurrentUser();
-        String uid = currentUser.getUid();
 
-        Map<String, Object> toggleButtonData = new HashMap<>();
-        for (int i = 0; i < toggleButtonStates.length; i++) {
-            String toggleButtonKey = "toggleButton" + (i + 1);
-            boolean isChecked = toggleButtonStates[i];
-            toggleButtonData.put(toggleButtonKey, isChecked);
-        }
 
-        firestore.collection("users").document(uid)
-                .collection("toggleButtonData")
-                .document("toggleButtons")
-                .set(toggleButtonData)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(RecipeRegistActivity.this, "ToggleButton 상태가 성공적으로 저장되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
-        })
-        .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RecipeRegistActivity.this, "ToggleButton 상태 저장에 실패했습니다.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
 }

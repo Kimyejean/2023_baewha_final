@@ -48,7 +48,7 @@
         android:fontFamily="sans-serif"
         android:text="냉장고"
         android:textAlignment="center"
-        android:textColor="#8BC34A"
+        android:textColor="@color/sub_color"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,11 +62,12 @@
         android:id="@+id/emailView"
         android:layout_width="96dp"
         android:layout_height="31dp"
-        android:layout_marginBottom="684dp"
+        android:layout_marginBottom="712dp"
         android:text="TextView"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView4" />
 
     <ImageView
@@ -81,23 +82,12 @@
         app:layout_constraintVertical_bias="0.093"
         app:srcCompat="@drawable/main_rectangle" />
 
-    <SearchView
-        android:id="@+id/search_view"
-        android:layout_width="55dp"
-        android:layout_height="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.011"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095" />
-
-
     <EditText
-        android:id="@+id/m_serarch"
+        android:id="@+id/editTextSearch"
         android:layout_width="314dp"
         android:layout_height="50dp"
         android:layout_weight="1"
+        android:background="@android:color/transparent"
         android:ems="10"
         android:hint="오늘 먹고싶은 음식을 검색해주세요"
         android:inputType="text"
@@ -105,13 +95,27 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.657"
+        app:layout_constraintHorizontal_bias="0.412"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093" />
+        app:layout_constraintVertical_bias="0.091" />
 
+    <ImageButton
+        android:id="@+id/btnSearch"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="@+id/emailView"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103"
+        app:srcCompat="@drawable/search_icon" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="150dp"
@@ -124,7 +128,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/to_suggestion"
@@ -134,7 +139,9 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+
             <androidx.recyclerview.widget.RecyclerView
+                android:clickable="true"
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
@@ -149,11 +156,11 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:clickable="true"
                 android:id="@+id/recyclerView2"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:layout_margin="5dp">
-            </androidx.recyclerview.widget.RecyclerView>
+                android:layout_margin="5dp"></androidx.recyclerview.widget.RecyclerView>
 
             <TextView
                 android:id="@+id/textView3"
@@ -164,11 +171,11 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:clickable="true"
                 android:id="@+id/recyclerView3"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:layout_margin="5dp">
-            </androidx.recyclerview.widget.RecyclerView>
+                android:layout_margin="5dp"></androidx.recyclerview.widget.RecyclerView>
 
             <FrameLayout
                 android:id="@+id/main_layout"
@@ -177,25 +184,79 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/food_list_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="GoToFoodList"
-        android:text="냉장고리스트 테스트 버튼"
+    <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="416dp"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/sub_color"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/menubar" />
 
-    <Button
-        android:id="@+id/my_page_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="212dp"
+    <ImageButton
+        android:id="@+id/tab_home"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@android:color/transparent"
+        android:onClick="GotoHome"
+        android:scaleType="centerCrop"
+        android:tint="#009688"
+        app:layout_constraintBottom_toBottomOf="@+id/tab_mypage"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tab_mypage"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/home_icon"
+        />
+    <ImageButton
+        android:id="@+id/tab_mypage"
+        android:layout_width="24dp"
+        android:layout_height="26dp"
+        android:background="@android:color/transparent"
         android:onClick="GoToMyPage"
-        android:text="마이페이지 테스트 버튼"
+        android:scaleType="centerCrop"
+
+        app:layout_constraintBottom_toBottomOf="@+id/search_page_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/search_page_btn"
+        app:layout_constraintVertical_bias="0.977"
+        app:srcCompat="@drawable/mypage_icon"
+        />
+
+    <ImageButton
+        android:id="@+id/search_page_btn"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:background="@android:color/transparent"
+        android:onClick="GoToSearchPage"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/tab_list"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.635"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tab_list"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/search_icon" />
+
+    <ImageButton
+        android:id="@+id/tab_list"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:background="@android:color/transparent"
+        android:onClick="GoToFoodList"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/sub_color"/>
+        app:layout_constraintHorizontal_bias="0.903"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.977"
+        app:srcCompat="@drawable/list_icon" />
+    <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
 </androidx.constraintlayout.widget.ConstraintLayout>

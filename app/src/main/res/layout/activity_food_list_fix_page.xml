@@ -7,7 +7,6 @@
     android:background="@color/white"
     tools:context=".FoodListFixPage">
 
-
     <ImageView
         android:id="@+id/food_image_view"
         android:layout_width="186dp"
@@ -20,17 +19,43 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/top_title"
+        android:id="@+id/nicknameView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/food_image_view"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="132dp"
-        android:layout_marginBottom="202dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="197dp"
+        android:layout_marginBottom="661dp"
         android:fontFamily="sans-serif"
-        android:text="나만의 냉장고"
+        android:text="나만의"
+        android:textColor="#807F7F"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="219dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginBottom="661dp"
+        android:fontFamily="sans-serif"
+        android:text="냉장고"
         android:textAlignment="center"
-        android:textColor="#8BC34A"
+        android:textColor="@color/sub_color"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,25 +65,56 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
+    <Button
+        android:id="@+id/image_upload_btn"
+        android:layout_width="189dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/food_image_view"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="105dp"
+        android:backgroundTint="#a8f279"
+        android:text="사진 업로드"
+        android:textColor="@color/text_color"
+        android:textSize="24sp" />
+
+    <ImageButton
+        android:id="@+id/btnSearch"
+        android:layout_width="33dp"
+        android:layout_height="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="-252dp"
+        android:layout_marginBottom="463dp"
+        android:layout_toStartOf="@+id/image_upload_btn"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/search_icon" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/food_image_view"
-        android:layout_marginTop="94dp"
+        android:layout_marginTop="96dp"
         android:orientation="vertical">
+
 
         <EditText
             android:id="@+id/fix_food_name"
-            android:layout_width="259dp"
-            android:layout_height="48dp"
+            android:layout_width="256dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_weight="1"
             android:ems="10"
             android:gravity="center"
             android:hint="이름"
             android:inputType="text"
-            android:textSize="25dp" />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/fix_buy_date"
@@ -70,8 +126,8 @@
             android:gravity="center"
             android:hint="구매한 날짜 입력"
             android:inputType="date"
-            android:textSize="25dp"
-            android:onClick="showDatePickerDialog"/>
+            android:onClick="showDatePickerDialog"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/fix_use_date"
@@ -85,14 +141,23 @@
             android:gravity="center"
             android:hint="소비기한 입력"
             android:inputType="date"
-            android:textSize="25dp"
-            android:onClick="showDatePickerDialog"/>
+            android:onClick="showDatePickerDialog"
+            android:textSize="24sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <Button
         android:id="@+id/fixButton"
-        android:layout_width="wrap_content"
-        android:layout_height="59dp"
+        android:layout_width="310dp"
+        android:layout_height="55dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -103,40 +168,26 @@
         android:layout_marginEnd="43dp"
         android:layout_marginBottom="83dp"
         android:backgroundTint="#a8f279"
-        android:text="저장하기"
-        android:textSize="25dp" />
+        android:text="수정하기"
+        android:textColor="@color/text_color"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/deleteButton"
-        android:layout_width="311dp"
+        android:layout_width="310dp"
         android:layout_height="55dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:layout_marginStart="47dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="164dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="21dp"
         android:backgroundTint="#a8f279"
-        android:onClick="GoToFoodList"
         android:text="삭제하기"
-        android:textSize="25dp" />
-
-    <Button
-        android:id="@+id/image_upload_btn"
-        android:layout_width="189dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/food_image_view"
-        android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="105dp"
-        android:backgroundTint="#a8f279"
-        android:text="사진 업로드"
-        android:textColor="@color/white"
-        android:textSize="25dp" />
+        android:textColor="@color/text_color"
+        android:textSize="24sp" />
 
 </RelativeLayout>

@@ -55,14 +55,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         ImageView imgView_item;
         TextView recipeTitle;
         TextView shortRecipe;
-        TextView recipeScore;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgView_item = itemView.findViewById(R.id.imgView_item);
             recipeTitle = itemView.findViewById(R.id.ShortRecipe);
             shortRecipe = itemView.findViewById(R.id.Recipe_Title);
-            recipeScore = itemView.findViewById(R.id.Recipe_Score);
+
         }
     }
 }

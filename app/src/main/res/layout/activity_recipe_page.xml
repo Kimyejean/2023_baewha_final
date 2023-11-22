@@ -1,157 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipePage">
+    tools:context=".RecipeDetailActivity">
 
-    <ImageView
-        android:id="@+id/imageViewRecipe"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_launcher_background"
-        android:scaleType="centerCrop"
-        android:layout_marginBottom="16dp"/>
-
-    <!-- ScrollView를 ImageView의 바로 아래에 배치 -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/imageViewRecipe">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:foregroundGravity="center_vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            tools:ignore="ExtraText">
+
+            <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+
+            <ImageView
+                android:id="@+id/imageViewRecipeDetail"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
 
             <TextView
-                android:id="@+id/RecipeTitle"
+                android:id="@+id/titleDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="레시피 제목" />
-
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
             <TextView
-                android:id="@+id/ShortDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="레시피 소개" />
+                android:text="레시피 소개"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/Ingredients"
+                android:id="@+id/ShortDescriptionDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="필요한 식재료" />
-
+                android:textSize="16sp" />
+            <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
             <TextView
-                android:id="@+id/Seasoning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="양념에 필요한 재료" />
+                android:text="필요한 식재료"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/AllergyCheck"
+                android:id="@+id/IngredientsDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp" />
+            <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <TextView
+                android:id="@+id/TextViewSeasoning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="알러지 유발 재료 체크" />
-
+                android:text="양념에 필요한 재료"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/Step1"
+                android:id="@+id/TextViewSeasoningDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textSize="16sp" />
+            <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="89dp"
+                android:layout_height="wrap_content"
+                android:text="요리 과정"
+                android:textSize="20sp"
+                android:textStyle="bold"></TextView>
+
+
+            <!-- ㅡㅡㅡㅡ1ㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_1" />
+
+            <TextView
+                android:id="@+id/StepDetail_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 1" />
+                android:textSize="16sp" />
+
+            <!-- ㅡㅡㅡㅡ2ㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_2" />
 
             <TextView
-                android:id="@+id/Step2"
+                android:id="@+id/StepDetail_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 2" />
+                android:textSize="16sp" />
+
+            <!-- ㅡㅡㅡㅡ3ㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_3" />
 
             <TextView
-                android:id="@+id/Step3"
+                android:id="@+id/StepDetail_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 3" />
+                android:textSize="16sp" />
+
+            <!-- ㅡㅡㅡㅡ4ㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_4" />
 
             <TextView
-                android:id="@+id/Step4"
+                android:id="@+id/StepDetail_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 4" />
+                android:textSize="16sp" />
+
+            <!-- ㅡㅡㅡㅡ5ㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_5" />
 
             <TextView
-                android:id="@+id/Step5"
+                android:id="@+id/StepDetail_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 5" />
+                android:textSize="16sp" />
+
+            <!-- ㅡㅡㅡㅡ6-ㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_6" />
 
             <TextView
-                android:id="@+id/Step6"
+                android:id="@+id/StepDetail_6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 6" />
+                android:textSize="16sp" />
+
+            <!-- ㅡㅡㅡㅡ7ㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_7" />
 
             <TextView
-                android:id="@+id/Step7"
+                android:id="@+id/StepDetail_7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 7" />
+                android:textSize="16sp" />
+
+            <!-- ㅡㅡㅡㅡ8ㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_8" />
 
             <TextView
-                android:id="@+id/Step8"
+                android:id="@+id/StepDetail_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 8" />
+                android:textSize="16sp" />
+
+            <!-- ㅡㅡㅡㅡ9ㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_9" />
 
             <TextView
-                android:id="@+id/Step9"
+                android:id="@+id/StepDetail_9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 9" />
+                android:textSize="16sp" />
+
+            !-- ㅡㅡㅡㅡ10ㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_10" />
 
             <TextView
-                android:id="@+id/Step10"
+                android:id="@+id/StepDetail_10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 10" />
+                android:textSize="16sp" />
+
+            <!-- ㅡㅡㅡㅡ11ㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_11" />
 
             <TextView
-                android:id="@+id/Step11"
+                android:id="@+id/StepDetail_11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 11" />
+                android:textSize="16sp" />
+
+            <!-- ㅡㅡㅡㅡ12ㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/recipe_12" />
 
             <TextView
-                android:id="@+id/Step12"
+                android:id="@+id/StepDetail_12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="요리 순서 12" />
+                android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/btnReiviewRegist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="레시피 등록" />
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

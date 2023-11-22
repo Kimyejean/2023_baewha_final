@@ -27,25 +27,13 @@
         android:roundIcon="@mipmap/ic_register_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Refrigerator_2023Final"
+        android:usesCleartextTraffic="true"
+
         tools:targetApi="31">
-        <activity
-            android:name=".RecipePage"
-            android:exported="false" />
-        <activity
-            android:name=".RecipeRegistActivity"
-            android:exported="false" />
-
-        <service
-            android:name=".MyFirebaseMessaging"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
 
         <activity
-            android:name=".RecipeRegistPage"
-            android:exported="false" />
+            android:name=".SearchPageActivity"
+            android:exported="true" />
         <activity
             android:name=".FoodListFixPage"
             android:exported="true"
@@ -83,6 +71,12 @@
             android:exported="false" />
         <activity
             android:name=".allergyfilterpage"
+            android:exported="true" />
+        <activity
+            android:name=".RecipeDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RecipeRegistActivity"
             android:exported="true" />
     </application>
 
