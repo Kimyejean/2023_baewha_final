@@ -2,6 +2,9 @@ package com.example.refrigerator_2023final;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import android.app.Activity;
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -38,6 +41,7 @@ public class MyPageJava extends AppCompatActivity {
     private Button proBtn;
     private String userId;
 
+    //@SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +49,8 @@ public class MyPageJava extends AppCompatActivity {
 
         userEmailTextView = findViewById(R.id.nicknameView3);
         userView2 = findViewById(R.id.userProfile);
-        userView2.getLayoutParams().width = 400;
-        userView2.getLayoutParams().height = 400;
+        userView2.getLayoutParams().width = 500;
+        userView2.getLayoutParams().height = 500;
         userView2.requestLayout();
         proBtn = findViewById(R.id.profile_img_btn);
 
@@ -84,8 +88,22 @@ public class MyPageJava extends AppCompatActivity {
         });
 
         loadProfileImage();
+
     }
 
+    private void saveAllergyAlertStatus(boolean isChecked) {
+        // Save the status of the allergy alert in SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("allergyAlertStatus", isChecked);
+        editor.apply();
+    }
+
+    private boolean getSavedCheckBoxState() {
+        // Retrieve the saved state of the CheckBox from SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return preferences.getBoolean("allergyAlertStatus", false);
+    }
 
     private void showAllergyDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -217,6 +235,38 @@ public class MyPageJava extends AppCompatActivity {
         });
     }
 
+
+    public void GoToRecipeRegistPage(View view){
+        Intent intent = new Intent(MyPageJava.this, RecipeRegistActivity.class);
+        startActivity(intent);
+    }
+
+    public void GoToFoodRegist(View view){
+        Intent intent = new Intent(MyPageJava.this, FoodRegist.class);
+        startActivity(intent);
+    }
+
+
+
+    public void GoToSearchPage(View view){
+        Intent intent = new Intent(MyPageJava.this, SearchPageActivity.class);
+        startActivity(intent);
+    }
+
+    public void GoToFoodList(View view){
+        Intent intent = new Intent(MyPageJava.this, FoodListPage.class);
+        startActivity(intent);
+    }
+
+    public void GotoHome(View view){
+        Intent intent = new Intent(MyPageJava.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void GoToMyPage(View view){
+        Intent intent = new Intent(MyPageJava.this, MyPageJava.class);
+        startActivity(intent);
+    }
 
 
 }

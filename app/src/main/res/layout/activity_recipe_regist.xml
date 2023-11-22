@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecipeRegistActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imageViewRecipe"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_launcher_background"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="16dp"/>
+
+            <Button
+                android:id="@+id/btnAddImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="이미지 등록"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/editTextRecipeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="레시피 제목"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/editTextShortDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="레시피 소개"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/editTextIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="필요한 식재료"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/editTextSeasoning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="양념에 필요한 재료"
+                android:layout_marginBottom="16dp"/>
+
+            <Button
+                android:id="@+id/btnAllergyCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="알러지 유발 재료 체크"
+                android:layout_marginBottom="16dp"
+                android:onClick="showAllergyDialog"/>
+
+            <EditText
+                android:id="@+id/editTextStep1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 1"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextStep2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 2"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextStep3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 3"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextStep4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 4"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextStep5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 5"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextStep6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 6"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextStep7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 7"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextStep8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 8"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextStep9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 9"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextStep10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 10"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextStep11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 11"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/editTextStep12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="요리 순서 12"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnAddRecipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="레시피 등록"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

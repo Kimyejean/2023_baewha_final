@@ -19,10 +19,10 @@ public class allergyfilterpage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.allergyfilterpage);
+        setContentView(R.layout.allergy_filter_dialog_layout);
 
         checkBoxes = new CheckBox[10];
-        items = new Integer[]{R.id.checkBox, R.id.checkBox2, R.id.checkBox3, R.id.checkBox4, R.id.checkBox5, R.id.checkBox6, R.id.checkBox7, R.id.checkBox8, R.id.checkBox9, R.id.checkBox10};
+        items = new Integer[]{R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBox4, R.id.checkBox5, R.id.checkBox6, R.id.checkBox7, R.id.checkBox8, R.id.checkBox9, R.id.checkBox10};
 
         for (int i = 0; i < checkBoxes.length; i++) {
             checkBoxes[i] = findViewById(items[i]);

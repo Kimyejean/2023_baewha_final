@@ -5,6 +5,18 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <meta-data
+        android:name="com.google.firebase.messaging.default_notification_icon"
+        android:resource="@drawable/ic_push" />
+    <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+         notification message. See README(https://goo.gl/6BKBk7) for more.
+    -->
+    <meta-data
+        android:name="com.google.firebase.messaging.default_notification_color"
+        android:resource="@color/main_color" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +27,17 @@
         android:roundIcon="@mipmap/ic_register_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Refrigerator_2023Final"
+        android:usesCleartextTraffic="true"
+
         tools:targetApi="31">
+
+        <activity
+            android:name=".SearchPageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".FoodListFixPage"
+            android:exported="true"
+            android:label="FoodListFixPage" />
         <activity
             android:name=".IntroActivity"
             android:exported="true">
@@ -37,20 +59,24 @@
         <activity
             android:name=".RegisterPage"
             android:exported="false" />
-
         <activity
             android:name=".LoginPage"
-            android:exported="true">
-        </activity>
-        <activity android:name=".MyPageJava"
+            android:exported="true" />
+        <activity
+            android:name=".MyPageJava"
             android:label="@string/app_name"
-
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".allergyfilterpage"
+            android:exported="true" />
+        <activity
+            android:name=".RecipeDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RecipeRegistActivity"
             android:exported="true" />
     </application>
 

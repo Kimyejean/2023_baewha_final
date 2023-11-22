@@ -8,20 +8,6 @@
     android:background="@color/white">
 
 
-    <TextView
-        android:id="@+id/login1"
-        android:layout_width="150dp"
-        android:layout_height="43dp"
-        android:text="회원가입"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="327dp"
@@ -30,22 +16,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55"
         app:srcCompat="@drawable/rectangle" />
 
-    <EditText
-        android:id="@+id/rUserEmail"
-        android:layout_width="224dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:hint="이메일"
-        android:inputType="textPersonName"
+    <TextView
+        android:id="@+id/login1"
+        android:layout_width="150dp"
+        android:layout_height="43dp"
+        android:text="회원가입"
+        android:textAlignment="center"
+        android:textColor="#6E6E6E"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.395" />
+        app:layout_constraintVertical_bias="0.28" />
 
     <EditText
         android:id="@+id/rUserPass"
@@ -60,20 +47,49 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.533" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="※ 영문, 숫자를 조합하여 8자 이내로 작성"
+        android:textColor="#AAAAAA"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.575" />
 
     <Button
         android:id="@+id/finishRegist"
-        android:layout_width="218dp"
-        android:layout_height="59dp"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
         android:backgroundTint="@color/main_color"
         android:text="회원가입"
+        android:textColor="@color/text_color"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/rUserPass"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/rUserPass"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.638" />
+        app:layout_constraintVertical_bias="0.672" />
+
+    <EditText
+        android:id="@+id/rUserEmail"
+        android:layout_width="224dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="이메일"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.428" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

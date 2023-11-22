@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.app.DatePickerDialog;
+import android.view.View;
+import android.widget.DatePicker;
+import java.util.Calendar;
+import java.util.Locale;
+
+
 public class FoodRegist extends AppCompatActivity {
     private Button selectImageBtn, saveBtn;
     private ImageView foodImageView;
@@ -42,6 +51,7 @@ public class FoodRegist extends AppCompatActivity {
     private FirebaseStorage storage;
     private DatabaseReference databaseRef; // Firebase Realtime Database reference
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +61,7 @@ public class FoodRegist extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
         databaseRef = FirebaseDatabase.getInstance().getReference();
-
+        buyDateEditText = findViewById(R.id.buy_date);
         // 뷰 초기화
         selectImageBtn = findViewById(R.id.image_upload_btn);
         saveBtn = findViewById(R.id.registButton);
@@ -59,6 +69,10 @@ public class FoodRegist extends AppCompatActivity {
         foodNameEditText = findViewById(R.id.food_name);
         useDateEditText = findViewById(R.id.use_date);
         buyDateEditText = findViewById(R.id.buy_date);
+
+        // 사용자가 날짜를 입력하면 자동으로 포맷팅하는 코드 추가
+        useDateEditText.addTextChangedListener(useDateTextWatcher);
+        buyDateEditText.addTextChangedListener(buyDateTextWatcher);
 
         selectImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,6 +147,7 @@ public class FoodRegist extends AppCompatActivity {
                                         foodInfo.put("foodName", foodName);
                                         foodInfo.put("useDate", useDate);
                                         foodInfo.put("buyDate", buyDate);
+                                        foodInfo.put("buyDate", buyDate);
                                         foodInfo.put("imageUrl", imageUrl.toString());
 
                                         // Firebase Realtime Database에 정보 저장
@@ -156,8 +171,90 @@ public class FoodRegist extends AppCompatActivity {
         }
     }
 
+    TextWatcher useDateTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // 필요한 경우 구현
+        }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // 필요한 경우 구현
+        }
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (s.length() == 8) {
+                // 입력된 길이가 8인 경우 (예: 20231102)
+                String inputDate = s.toString();
+                String formattedDate = inputDate.substring(0, 4) + "-" + inputDate.substring(4, 6) + "-" + inputDate.substring(6, 8);
+                useDateEditText.setText(formattedDate);
+            }
+        }
+    };
+    TextWatcher buyDateTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // 필요한 경우 구현
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // 필요한 경우 구현
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (s.length() == 8) {
+                // 입력된 길이가 8인 경우 (예: 20231102)
+                String inputDate = s.toString();
+                String formattedDate = inputDate.substring(0, 4) + "-" + inputDate.substring(4, 6) + "-" + inputDate.substring(6, 8);
+                buyDateEditText.setText(formattedDate);
+            }
+        }
+    };
+
     public void GoToFoodList(View view) {
         Intent intent = new Intent(this, FoodListPage.class);
         startActivity(intent);
     }
+
+    public void showDatePickerDialog(View v) {
+        if (v.getId() == R.id.buy_date) {
+            // "구매한 날짜" EditText를 클릭했을 때
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int day) {
+                    // 선택한 날짜를 EditText에 설정
+                    String selectedDate = String.format(Locale.getDefault(), "%04d%02d%02d", year, month + 1, day);
+                    buyDateEditText.setText(selectedDate);
+                }
+            }, year, month, day);
+
+            datePickerDialog.show();
+        }
+
+        if (v.getId() == R.id.use_date) {
+            // "구매한 날짜" EditText를 클릭했을 때
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int day) {
+                    // 선택한 날짜를 EditText에 설정
+                    String selectedDate = String.format(Locale.getDefault(), "%04d%02d%02d", year, month + 1, day);
+                    useDateEditText.setText(selectedDate);
+                }
+            }, year, month, day);
+
+            datePickerDialog.show();
+        }
+    }
+
 }
