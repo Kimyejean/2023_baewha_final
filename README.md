@@ -1,4 +1,4 @@
-# 2023_baewha_final
+[release.zip](https://github.com/Kimyejean/2023_baewha_final/files/13588906/release.zip)# 2023_baewha_final
 배화여대 캡스톤 디자인 전시회
 스마트IT학과 도착!드림팀
 
@@ -7,7 +7,9 @@
 
 체험용 apk파일
 (반응형 앱이 아니기 때문에 레이아웃이 어긋나 보일 수 있습니다.)
-[my_refrigerator.zip](https://github.com/Kimyejean/2023_baewha_final/files/13445087/my_refrigerator.zip)
+[release (2).zip](https://github.com/Kimyejean/2023_baewha_final/files/13588919/release.2.zip)
+
+
 
 다운로드 순서
 1. 압축 파일 다운로드 후 압축 풀기.
